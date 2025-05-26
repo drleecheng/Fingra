@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Finger Pinch Recognition</title>
+</head>
+
+<body>
+
+  <h1 style="text-align: center;">Finger Pinch Recognition</h1>
+  <div style="text-align: center;">
+    <button id="button_webcam" onclick="displayCamera(); cameraOnSignal(); this.style.display='none';" style="display: inline-block; max-width: 640px; border: none; background-color: #04AA6D; color: white; padding: 14px 28px; font-size: 16px; cursor: pointer; text-align: center;">
+      Start
+    </button>
+  </div>
+
+  <!-- Carousel -->
+  <div id="slides" style="text-align: center;">
+    <br/>
+    <img src="Pinch.jpg" style="max-width:640px">
+  </div>
+
+  <!-- Check if mobile -->
+  <h1 id="mobile" style="text-align: center;">Turn on audio on your device</h1>
+  <script>
+    let details = navigator.userAgent;
+    let regexp = /android|iphone|kindle|ipad/i;
+    let isMobileDevice = regexp.test(details);
+    if (!isMobileDevice) {
+      document.getElementById("mobile").style.display = "none";
+    }
+  </script>
+
+  <!-- Display camera when button clicked -->
+  <script>
+  function displayCamera() {
+    document.getElementById("slides").style.display = "none";
+    document.getElementById("canvas").style.display = "block";
+  }
+  </script>
+
+  <div id="canvas" style="text-align: center; display: none"></div>
+
+  <!-- include js libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+  <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+  <script src="http://unpkg.com/tone"></script>
+  <script src="sketch.js"></script>
+
+
+  </body>
+</html>
