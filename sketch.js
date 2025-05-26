@@ -14,27 +14,7 @@ const synth = new Tone.MonoSynth({
 		"decayCurve": "exponential",
 		"release": 0.8,
 		"releaseCurve": "exponential",
-		"sustain": 0.4
-	},
-	"filter": {
-		"Q": 1,
-		"detune": 0,
-		"frequency": 0,
-		"gain": 0,
-		"rolloff": -12,
-		"type": "lowpass"
-	},
-	"filterEnvelope": {
-		//"attack": 0.001,
-		//"attackCurve": "linear",
-		"decay": 0.7,
-		"decayCurve": "exponential",
-		"release": 0.8,
-		"releaseCurve": "exponential",
-		"sustain": 0.1,
-		"baseFrequency": 300,
-		"exponent": 2,
-		"octaves": 4
+		"sustain": 1
 	},
 	"oscillator": {
 		"detune": 0,
@@ -100,10 +80,11 @@ function draw() {
       stroke(0);
       strokeWeight(2);
       circle(centerX, centerY, pinch);
-      if (frameCount%5 == 0)
+      if (frameCount%10 == 0)
       {
+		synth.set({"envelope": {"sustain": (640-finger.x)/640}});
         synth.volume.value = pinch/2 - 20;
-        let pitch = -finger.y/3+250;
+        let pitch = -finger.y/3+300;
         synth.triggerAttackRelease(pitch, "1n");
       }
     }
